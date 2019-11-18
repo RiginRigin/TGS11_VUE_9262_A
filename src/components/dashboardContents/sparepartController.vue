@@ -67,7 +67,7 @@
     </v-card>
     <v-dialog v-model="dialog" persistent max-width="600px"> <v-card>
         <v-card-title>
-            <span class="headline">sparepart Profile</span>
+            <span class="headline">Sparepart</span>
         </v-card-title>
         <v-card-text>
             <v-container>
@@ -76,10 +76,10 @@
                         <v-text-field label="Name*" v-model="form.name" required></v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-text-field label="Merk*" v-model="form.email" required></v-text-field> 
+                        <v-text-field label="merk*" v-model="form.merk" required></v-text-field> 
                     </v-col>
                     <v-col cols="12">
-                        <v-text-field label="Amount*" v-model="form.amount" required></v-text-field>
+                        <v-text-field label="amount*" v-model="form.amount" required></v-text-field>
                     </v-col>
                 </v-row>
             </v-container>
@@ -131,13 +131,10 @@ export default {
                     value: 'merk'
                     },
                     {
-                    text: 'amount',
+                    text: 'Amount',
                     value: 'amount'
                     },
-                    {
-                    text: 'created_at',
-                    value: 'created_at'
-                    },
+
                     {
                     text: 'Aksi',
                     value: null
@@ -152,7 +149,7 @@ export default {
                 name : '',
                 merk : '',
                 amount : '',
-                created_at : '',
+        
             },
             sparepart : new FormData,
             typeInput: 'new',
@@ -172,7 +169,7 @@ export default {
             this.sparepart.append('name', this.form.name);
             this.sparepart.append('merk', this.form.merk);
             this.sparepart.append('amount', this.form.amount);
-            this.sparepart.append('created_at', this.form.created_at);
+    
             var uri =this.$apiUrl + '/sparepart'
             this.load = true
             this.$http.post(uri,this.sparepart).then(response =>{
@@ -196,7 +193,7 @@ export default {
             this.sparepart.append('name', this.form.name);
             this.sparepart.append('merk', this.form.merk);
             this.sparepart.append('amount', this.form.amount);
-            this.sparepart.append('created_at', this.form.created_at);
+
             var uri = this.$apiUrl + '/sparepart/' + this.updatedId;
             this.load = true
             this.$http.post(uri,this.sparepart).then(response =>{
@@ -221,8 +218,9 @@ export default {
             this.typeInput = 'edit';
             this.dialog = true;
             this.form.name = item.name;
-            this.form.email = item.email;
-            this.form.password = '',
+            this.form.merek = item.merek;
+            this.form.amount = item.merek;
+  
             this.updatedId = item.id
     },
 
@@ -253,9 +251,9 @@ export default {
         resetForm(){
             this.form = {
                 name : '',
-                merk : '',
+                merek : '',
                 amount : '',
-                created_at : ''
+            
             }
         }
     },

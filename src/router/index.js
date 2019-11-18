@@ -5,18 +5,30 @@ import Router from 'vue-router'
         return () => import(/* webpackChunkName: "view-[request]" */ `../components/dashboardContents/${view}.vue`)
     }
     const routes = [
-    {
-        path: '/',
-        component: DashboardLayout,
-        children: [
-    {
-        name: 'UserController',
-        path: '',
-        component: loadView('sparepartController')
+        {
+            path: '/',
+            component: DashboardLayout,
+            children: [
+                {
+                    name: 'UserController',
+                    path: '/',
+                    component: loadView('userController')
+                },
+                {
+                    path: '/sparepart',
+                    component: DashboardLayout,
+                    children: [
+                        {
+                            name: 'SparepartCOntroller',
+                            path: '',
+                            component: loadView('sparepartController')
+                        }
+                    ]
+                },
+            ]
         },
-        ]
-    },
-    ]
+        
+     ]
     Vue.use(Router)
     const router = new Router({mode: 'history', routes: routes})
     export default router
